@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM-Grundlagen</title>
+
+    <style>
+      .highlight { background-color: yellow; }
+
+      .delete-btn:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    </style>
+
+</head>
+<body>
+  <h1>DOM Grundlagen</h1>
+
+  <!-- Übungen 1 bis 3 -->
+  <section id="element-selection">
+    <button class="el-select-btn" name="btnName">Click</button>
+    <p class="el-select-par"></p>
+  </section>
+
+  <hr />
+
+  <!-- Übung 4: einfache To-Do-Liste -->
+  <section id="to-do">
+    <div id="countdown-section">
+      <h2>To-Do-Liste</h2>
+      <h3>To-Do eintragen</h3>
+      <label>To-Do eingeben:</label>  <!-- <label for="to-do-input"> -->
+      <input type="text" id="to-do-input" />
+      <button id="enter-to-do" name="to-do-btn">To-do eintragen</button>
+    </div>
+    
+    <h3>To-Do Liste</h3>
+    <ul id="to-do-list"></ul>
+  
+  </section>
+
+  <script>
+    // Übung 1: Elementauswahl & Textänderung
+    
+    const elSelectButton = document.querySelector(".el-select-btn");
+    let countClicks = 0;
+    let elSelectParagraph = document.querySelector(".el-select-par");
+
+    console.log(elSelectButton);
+    console.log(elSelectParagraph);
+
+    function addList () {
+      let unorderedList = document.createElement("ul");
+      for (let i = 1; i < 4; i++) {
+        let item = document.createElement("li");
+        item.textContent = "a" + i;
+        unorderedList.appendChild(item);
+      }
+      document.body.appendChild(unorderedList);
+    }
+    
+    elSelectButton.addEventListener("click", () => {
+      countClicks++;
+      elSelectParagraph.textContent = "Button was clicked " + countClicks + " time(s)!";
+
+      // Übung 2: Klassen und Styles
+      elSelectParagraph.classList.toggle("highlight");
+
+      // Übung 3: Neues Element erzeugen
+      addList ();
+    });
+
+    // Übung 4: einfache To-Do-Liste
+
+    const enterToDo = document.querySelector("#enter-to-do");
+
+    enterToDo.addEventListener("click", () => {
+
+      const inputEl = document.querySelector("#to-do-input");
+      const deleteButton = '<button class="delete-btn" aria-label="Aufgabe löschen">×</button>'
+
+      const text = inputEl.value.trim();
+      if (!text) return;                        // nichts tun bei leerem Text
+
+      let toDoList = document.querySelector("#to-do-list");
+      let item = document.createElement("li");
+      item.textContent = text + " | ";
+
+      toDoList.appendChild(item);
+      item.insertAdjacentHTML("beforeend", deleteButton);
+
+      /*
+      Meine verbesserte alte Lösung: Setzt einen EventListener auf jedes "li"-Item
+      const deleteBtn = item.querySelector(".delete-btn");
+        deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // verhindert, dass das LI auch nochmal den Event auslöst
+        item.remove();
+      });
+      */
+
+      // Performante Lösung
+      // Wenn deine Liste sehr groß wird, ist es performant, nicht für jedes
+      // <li> einzeln Listener zu setzen, sondern einmal auf das <ul>:
+      toDoList.addEventListener("click", (e) => {
+        if (e.target.matches(".delete-btn")) {
+          e.target.closest("li").remove();
+        }
+      });
+
+      inputEl.value = "";                       // Input-Feld leeren
+      inputEl.focus();                          // Fokus zurück ins Feld
+
+    });
+
+    /*
+
+    */
+
+  </script>
+
+</body>
+</html>
