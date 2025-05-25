@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game 1 - Tic Tac Toe</title>
+    <link rel="stylesheet" href="../../res/styles-main.css">
+    <link rel="stylesheet" href="style-ttt.css">
+</head>
+
+<body>
+  <!--
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <nav>
+      <ul class="navigation">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  -->
+
+  <main>
+    <h1>Game 1 - Tic Tac Toe</h1>
+
+    <div class="game-area">
+      <div class="game-box game-additionals" id="game-instructions">
+        <h2>How to Play</h2>
+        <p>Click on a cell to place your mark. The first player to get three in a row wins!</p>
+        <p><span style="font-weight: bolder">Player 1: </span><span class='red-x'>X</span> &nbsp; | &nbsp; 
+        <span style="font-weight: bolder">Player 2: </span><span class='blue-o'>O</span></p>
+        <hr />
+        <div class="rules">
+          <h4>Rules</h4>
+          <ul>
+            <li>After draw starting player switches.</li>
+            <li>After win winning player starts new round.</li>
+            <li>Giving up by active player awards point to the other player.</li>
+            <li>'New round' button below playing field resets field.</li>
+            <li>'Reset game' button below Game Statistics clears statistics and sets starting player to P1.</li>
+            <li>Click the reset button to start a new game.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="game-box game-board">
+        <h2>Tic Tac Toe</h2>
+        <table id="game-board-tbl">
+          <tr>
+            <th></th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+          <tr>
+            <th>1</th>
+            <td class="game-cell" id="a1"></td>
+            <td class="game-cell" id="b1"></td>
+            <td class="game-cell" id="c1"></td>
+          </tr>
+          <tr>
+            <th>2</th>
+            <td class="game-cell" id="a2"></td>
+            <td class="game-cell" id="b2"></td>
+            <td class="game-cell" id="c2"></td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td class="game-cell" id="a3"></td>
+            <td class="game-cell" id="b3"></td>
+            <td class="game-cell" id="c3"></td>
+          </tr>
+        </table>
+      
+        <button id="surrender-new-round-button">Give up</button>
+        <!-- <button id="surrender-button">Give up</button> // LATER: add surrender button -->
+        
+        <div id="game-status">
+          <h4>Game status</h4>
+          <div id="game-state-output">
+            <p id="gsmsg1"></p>
+            <p id="gsmsg2"></p>
+            <p id="gsmsg3"></p>
+          </div>
+          <div id="cell-state-output"></div>
+        </div>
+      </div>
+    
+      <div class="game-box game-additionals" id="game-history">
+        <h2>Game History</h2>
+        
+        <table id="history-box">
+          <thead>
+            <tr>
+              <th>Draw #</th>
+              <th>P1</th>
+              <th>P2</th>
+            </tr>
+          </thead>
+          <tbody id="draw-history"></tbody>
+        </table>
+
+          <!-- Game history will be displayed here
+          <div id="history-box">  
+          </div>
+            LATER: 2row 3column table: move # | p1 | p2 -->
+        
+      </div>
+
+      <div class="game-box game-additionals" id="game-stats">
+        <h2>Game Statistics</h2>
+        <p>Player 1 Wins: <span id="show-p1-wins">0</span></p>
+        <p>Player 2 Wins: <span id="show-p2-wins">0</span></p>
+        <p>Draws: <span id="show-draws">0</span></p>
+      
+        <button id="reset-button">Reset Game</button>
+
+        <hr style="margin-top: 7rem" /> 
+        <h4>Known issues</h4>
+        <ul>
+          <li>"Game status" messages update incorrectly</li>
+          <li>"Game Statistics" not yet fully implemented</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- POSSIBLE FUTURE ADDITION: Game Settings
+    <div class="game-settings">
+      <h2>Game Settings</h2>
+      <label for="player1-name">Player 1 Name:</label>
+      <input type="text" id="player1-name" value="Player 1">
+      <label for="player2-name">Player 2 Name:</label>
+      <input type="text" id="player2-name" value="Player 2">
+      <button id="save-settings">Save Settings</button>
+    </div>
+    -->
+  </main>
+
+    
+  <footer>
+    <p>&copy; 2025 Daniel Schütz</p>
+  </footer>
+
+  <script src="../../res/script-main.js" defer></script>
+  <script type="module" src="script-ttt.js" defer></script>
+
+  <script>
+    // Inline JavaScript code
+    console.log("Page loaded");
+  </script>
+</html>
